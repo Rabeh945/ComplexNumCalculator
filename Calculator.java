@@ -15,7 +15,6 @@ public class Calculator extends complex implements ActionListener {
     float r = 0;
     float im = 0;
     int k1,k2 = 0;
-    complex result;
     char operator = 'a';
     public Calculator() {
         frame = new JFrame("Calculator");
@@ -117,7 +116,7 @@ public class Calculator extends complex implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        int i = 0;
+        int i;
         for (i = 0; i < 10; i++) {
             if (e.getSource() == numberButtons[i]) {
                 textField.setText(textField.getText().concat(String.valueOf(i)));
@@ -153,64 +152,63 @@ public class Calculator extends complex implements ActionListener {
         }
         if (e.getSource() == clrButton) {
             textField.setText("");
-                super.img = 0;
-                super.real = 0;
-                im = 0;
-                r = 0;
-                k1=0;
-                k2=0;
-                operator='a';
-            }
-            if (e.getSource() == argRadButton) {
-                textField.setText(String.valueOf(super.argRad()));
-            }
-            if (e.getSource() == moduleButton) {
-                textField.setText(String.valueOf(super.modulo()));
-            }
-            if (e.getSource() == decButton) {
-                textField.setText(textField.getText().concat("."));
-            }
-            if (e.getSource() == addButton) {
-                operator = '+';
-            }
-            if (e.getSource() == subButton) {
-                operator = '-';
-            }
-            if (e.getSource() == divButton) {
-                operator = '/';
-            }
-            if (e.getSource() == mulButton) {
-                operator = '*';
-            }
-            if (e.getSource()== powrButton){
-                operator = '^';
-            }
-            if (e.getSource() == formExpButton) {
-                textField.setText(String.format("La form Exp.. : %.0f * e (i %.0f Deg)", super.modulo(), super.argDeg()));
-            }
-            if (e.getSource() == formArtButton) {
-                textField.setText(String.format("La form Art.. : %.2f + %.2f i", super.real, super.img));
-            }
-            if (e.getSource() == formGeoButton) {
-                textField.setText(String.format("la form geo.. %.2f (cos %.0f + i sin %.0f)", super.modulo(), super.argDeg(), super.argDeg()));
-            }
-            if (e.getSource() == dispButton){
-                if( operator == '+'){
-                float result [] = super.addition(r,im);
+            super.img = 0;
+            super.real = 0;
+            im = 0;
+            r = 0;
+            k1=0;
+            k2=0;
+            operator='a';
+        }
+        if (e.getSource() == argRadButton) {
+            textField.setText(String.valueOf(super.argRad()));
+        }
+        if (e.getSource() == moduleButton) {
+            textField.setText(String.valueOf(super.modulo()));
+        }
+        if (e.getSource() == decButton) {
+            textField.setText(textField.getText().concat("."));
+        }
+        if (e.getSource() == addButton) {
+            operator = '+';
+        }
+        if (e.getSource() == subButton) {
+            operator = '-';
+        }
+        if (e.getSource() == divButton) {
+            operator = '/';
+        }
+        if (e.getSource() == mulButton) {
+            operator = '*';
+        }
+        if (e.getSource()== powrButton){
+            operator = '^';
+        }
+        if (e.getSource() == formExpButton) {
+            textField.setText(String.format("La form Exp.. : %.0f * e (i %.0f Deg)", super.modulo(), super.argDeg()));
+        }
+        if (e.getSource() == formArtButton) {
+            textField.setText(String.format("La form Art.. : %.2f + %.2f i", super.real, super.img));
+        }
+        if (e.getSource() == formGeoButton) {
+            textField.setText(String.format("la form geo.. %.2f (cos %.0f + i sin %.0f)", super.modulo(), super.argDeg(), super.argDeg()));
+        }
+        if (e.getSource() == dispButton){
+            if( operator == '+'){
+                float[] result = super.addition(r,im);
                 textField.setText(String.format("Real : %.2f || Img : %.2f",result[0],result[1]));
-                } else if (operator == '-') {
-                float result [] = super.substraction(r,im);
+            } else if (operator == '-') {
+                float[] result = super.substraction(r,im);
                 textField.setText(String.format("Real : %.2f || Img : %.2f",result [0], result [1]));
-                } else if (operator == '*') {
-                    float result [] = super.multi(r,im);
-                    textField.setText(String.format("Real : %.2f || Img : %.2f",result [0], result [1]));
-                } else if (operator == '/'){
-                    float result [] = super.division(r,im);
-                    textField.setText(String.format("Real : %.2f / %.2f || Img %.2f / %.2f",result[0],result[1],result[2],result[3]));
-                } else if (operator == '^') {
-                    float result [] = super.power();
-                    textField.setText(String.format("Real : %.2f || Img : %.2f ",super.real,super.img));
-                }
+            } else if (operator == '*') {
+                float[] result = super.multi(r,im);
+                textField.setText(String.format("Real : %.2f || Img : %.2f",result [0], result [1]));
+            } else if (operator == '/'){
+                float[] result = super.division(r,im);
+                textField.setText(String.format("Real : %.2f / %.2f || Img %.2f / %.2f",result[0],result[1],result[2],result[3]));
+            } else if (operator == '^') {
+                textField.setText(String.format("Real : %.2f || Img : %.2f ",super.real,super.img));
             }
-      }
+        }
+    }
 }
